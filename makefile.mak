@@ -5,7 +5,7 @@
 # To add library write -lxxx where x is name of library(np.-lsfml-graphics)
 
 #Input
-EXEC	:=lesson1
+EXEC	:=$(1)
 FILES	:=
 XTR_INCL:=
 LIBS	:=
@@ -21,7 +21,7 @@ DBG_DIR :=./debug
 SHELL	:=/bin/bash
 CPP		:=g++
 CFLAGS	=-w -std=c++17 -Wfatal-errors -I$(INCLUDE) $(LIBS)
-DEBUG	=$(1)
+DEBUG	=$(2)
 
 # Here make condition, if DEBUG is equal to "debug" then make build use DBG_DIR and add  -Og to CFLAG else keep it the way it is.
 
@@ -52,7 +52,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(INCL_DEPS)
 
 # Build proces
 $(BUILD): $(OBJS)
-# @echo "Building..."
+# @echo "Building..." $(BUILD)
 	@$(CPP) -o $(BUILD) $(OBJS)
 
 # Delete .o files

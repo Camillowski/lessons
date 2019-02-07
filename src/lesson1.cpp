@@ -24,9 +24,41 @@ Use signed int.
 
 */
 
+int solution(int N) {
+    uint32_t mask=1;
+	int maxGap=0;
+	int count=0;
+	int binSize=31;
+	int bin[binSize]={0};
+	bool start=false;
+	--binSize;
+	
+	//Main loop through bits
+    for(int i=0;i<31;++i){
+		if(mask&N){
+			bin[binSize-i]=1;
+			start=true;
+			if(count>maxGap) maxGap=count; //Update maxGap
+			count=0;
+		}else{
+			bin[binSize-i]=0;
+			
+			start==true?++count:count;
+		}
+		mask=mask<<1;
+    }
+    
+	//Print output array.
+	cout<<"Binary N: ";
+	for(int i=0;i<31;++i){
+		cout<<bin[i];
+	}
+	cout<<endl;
+	
+    return maxGap;
+}
 
 int main(){
-	int32_t number=234;
-	cout<<number;
-	
+	int sol=solution(65);
+	cout<<"Longest gap: "<<sol<<endl;
 }
